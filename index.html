@@ -81,7 +81,19 @@
     <div id="toast-container" class="toast-container"></div>
   </div>
 
-  <!-- Firebase SDK -->
+  <!-- Firebase Config (injected from environment variables on Vercel) -->
+  <script>
+    // For Vercel: These are replaced at build time
+    // For local: Create src/config/firebase.config.local.ts
+    window.FIREBASE_API_KEY = "%VITE_FIREBASE_API_KEY%";
+    window.FIREBASE_AUTH_DOMAIN = "%VITE_FIREBASE_AUTH_DOMAIN%";
+    window.FIREBASE_PROJECT_ID = "%VITE_FIREBASE_PROJECT_ID%";
+    window.FIREBASE_STORAGE_BUCKET = "%VITE_FIREBASE_STORAGE_BUCKET%";
+    window.FIREBASE_MESSAGING_SENDER_ID = "%VITE_FIREBASE_MESSAGING_SENDER_ID%";
+    window.FIREBASE_APP_ID = "%VITE_FIREBASE_APP_ID%";
+    window.FIREBASE_MEASUREMENT_ID = "%VITE_FIREBASE_MEASUREMENT_ID%";
+    window.FIREBASE_DATABASE_URL = "%VITE_FIREBASE_DATABASE_URL%";
+  </script>
   <script type="module" src="dist/app.js"></script>
 </body>
 </html>

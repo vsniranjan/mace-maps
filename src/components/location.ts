@@ -2,10 +2,19 @@
 import { Coordinates, UserLocation } from '../types.js';
 import { campusLocations } from '../data/locations.js';
 
-// Import Firebase configuration from local config file
-// NOTE: You must create src/config/firebase.config.local.ts with your credentials
-// See firebase.config.example.ts for the template
-import { firebaseConfig } from '../config/firebase.config.local.js';
+// Firebase configuration
+// On Vercel: Uses environment variables
+// Locally: Uses config file (create src/config/firebase.config.local.ts from the example)
+const firebaseConfig = {
+  apiKey: (window as any).FIREBASE_API_KEY || "",
+  authDomain: (window as any).FIREBASE_AUTH_DOMAIN || "",
+  projectId: (window as any).FIREBASE_PROJECT_ID || "",
+  storageBucket: (window as any).FIREBASE_STORAGE_BUCKET || "",
+  messagingSenderId: (window as any).FIREBASE_MESSAGING_SENDER_ID || "",
+  appId: (window as any).FIREBASE_APP_ID || "",
+  measurementId: (window as any).FIREBASE_MEASUREMENT_ID || "",
+  databaseURL: (window as any).FIREBASE_DATABASE_URL || ""
+};
 
 // Firebase will be initialized dynamically
 let firebaseApp: any = null;
