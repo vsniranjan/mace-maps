@@ -1,0 +1,20 @@
+{
+  "name": "mace-campus-map",
+  "version": "1.0.0",
+  "description": "Campus map application for Mar Athanasius College of Engineering",
+  "main": "dist/app.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "serve": "npx serve . -p 8080",
+    "dev": "concurrently \"npm run watch\" \"npm run serve\""
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "concurrently": "^8.2.0",
+    "serve": "^14.2.0"
+  },
+  "dependencies": {
+    "firebase": "^10.7.0"
+  }
+}
