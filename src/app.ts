@@ -99,6 +99,46 @@ class MACECampusMap {
         this.hideBuildingPopup();
       });
     }
+
+    // Click outside to close panels and popups
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      
+      // Close info panel when clicking outside
+      const infoPanel = document.getElementById('info-panel');
+      if (infoPanel?.classList.contains('visible')) {
+        if (!infoPanel.contains(target) && !target.closest('.building') && !target.closest('.landmark')) {
+          infoPanel.classList.remove('visible');
+        }
+      }
+
+      // Close building popup when clicking outside
+      const buildingPopup = document.getElementById('building-popup');
+      if (buildingPopup?.classList.contains('visible')) {
+        if (!buildingPopup.contains(target)) {
+          this.hideBuildingPopup();
+        }
+      }
+
+      // Close room info panel when clicking outside (inside floor plan)
+      const roomInfoPanel = document.getElementById('room-info-panel');
+      if (roomInfoPanel?.classList.contains('visible')) {
+        if (!roomInfoPanel.contains(target) && !target.closest('.room')) {
+          roomInfoPanel.classList.remove('visible');
+        }
+      }
+    });
+
+    // Close floor plan overlay when clicking on the dark background (not the container)
+    const floorPlanOverlay = document.getElementById('floor-plan-overlay');
+    if (floorPlanOverlay) {
+      floorPlanOverlay.addEventListener('click', (e) => {
+        // Only close if clicking directly on the overlay (dark background), not the content
+        if (e.target === floorPlanOverlay) {
+          this.hideFloorPlan();
+        }
+      });
+    }
   }
 
   private initializeLocationTracking(): void {
